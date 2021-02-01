@@ -17,9 +17,9 @@
             </div>
           </div>
           <ul>
-            <!--{% for category in categoryDropdown %}
+            {% for category in categoryDropdown %}
               <li><a href="{% url 'subCategory' category.id %}">{{ category.categoryType }}</a></li>
-            {% endfor %}-->
+            {% endfor %}
             <li><a href="{% url 'category' %}">View All</a></li>
           </ul>
         </li>
