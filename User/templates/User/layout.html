@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Shop{% endblock %}</title>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+
+        <script type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!--script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+        {% block custom %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+        .card-image .img {
+            height:500px;
+            }
+        </style>
+    </head>
+    <body> 
+        <div class="body-container">
+            <div class="s-fixed-menu">
+                <div class="s-menu-context">
+                    {% include "User/navbar.html" %} 
+                </div>
+            </div>    
+            
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <script type="text/javascript">M.toast({html: "{{message}}", classes:'green rounded', displayLenght:2000})</script>
+                    {% elif message.tags == 'info' %}
+                        <script type="text/javascript">M.toast({html: "{{message}}", classes:'red rounded', displayLenght:2000})</script>
+                    {% elif message.tags == 'error' %}
+                        <script type="text/javascript">M.toast({html: "{{message}}", classes:'orange rounded', displayLenght:2000})</script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <!-- Page body -->
+            <div class="product-body">
+                {% include "User/searchBar.html" %}
+                {% block body %}
+                {% endblock %}
+                {% include "User/footer.html" %}
+            </div>
+            
+        
+            
+        </div>
+
+        <script type="text/javascript">M.AutoInit();</script>
+
+        {% block script %}
+        {% endblock %}
+
+    </body>
+
+</html>
